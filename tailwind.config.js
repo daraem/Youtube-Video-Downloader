@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      transitionProperty: {
+        'border-bottom-width': 'border-bottom-width'
+      },
+      fontFamily: {
+        'Varela':["Varela Round", 'sans-serif']
+      },
+    },
   },
   plugins: [],
 }

@@ -5,7 +5,6 @@ use rusty_ytdl::{Video, VideoSearchOptions, VideoQuality, VideoOptions};
 use std::env;
 use std::fs;
 
-
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
 async fn download(url: String) {
@@ -19,11 +18,11 @@ async fn download(url: String) {
 
   let video_info = video.get_info().await.unwrap();
 
-  let videoFolder = "videos/";
-  let mut videostr = (video_info.video_details.title).to_string();
-  let videoTitle = format!("{}{}{}", &videoFolder, &videostr, &".mp4");
+  let video_folder = "videos/";
+  let videostr = (video_info.video_details.title).to_string();
+  let video_title = format!("{}{}{}", &video_folder, &videostr, &".mp4");
   let _ = fs::create_dir_all("videos");
-  let path = std::path::Path::new(&videoTitle);
+  let path = std::path::Path::new(&video_title);
   video.download(path).await.unwrap();
 }
 
@@ -33,5 +32,4 @@ fn main() {
   .run(tauri::generate_context!())
   .expect("error while running tauri application");
 }
-
 
