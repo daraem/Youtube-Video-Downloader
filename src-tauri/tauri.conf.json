@@ -8,7 +8,7 @@
   "package": {
     "productName": "YVDownloader",
 
-    "version": "0.1.0"
+    "version": "1.0.0"
   },
   "tauri": {
     "allowlist": {
@@ -38,7 +38,7 @@
       "targets": "all",
       "identifier": "com.daraem.yvdownloader",
       "icon": [
-        "./icons/yvd_logo.png"
+        "./icons/icon.ico"
       ]
     }
   }
