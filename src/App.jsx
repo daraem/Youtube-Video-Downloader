@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { invoke } from '@tauri-apps/api/tauri'
+import { TERipple } from "tw-elements-react";
 
 function App() {
 
   const [dMessage, setDMessage] = useState("")
+  const [formatState, setFormat] = useState(false)
   const [finishState, setFinishState] = useState(false)
   const [downloadingState, setDownloadingState] = useState(false)
   const [input, setInput] = useState("")
@@ -12,10 +14,14 @@ function App() {
     await setDownloadingState(true)
     await setFinishState(false)
     await setDMessage("Downloading...")
-    await invoke("download", {url})
+    await invoke("download", {url, formatState})
     setDownloadingState(false)
     setFinishState(true)
     setDMessage("Succesful Download")
+  }
+
+  function getFormat() {
+    setFormat(prev => !prev)
   }
 
   return (
@@ -38,6 +44,9 @@ function App() {
           e.preventDefault();
           getDownload(input);
         }}>
+        <div className="group w-24 h-12 mr-5 flex items-center justify-center font-bold border-2 border-sky-600 rounded-xl text-sky-500 hover:bg-sky-600 active:bg-sky-700 active:shadow-sky-700 active:border-sky-700 hover:text-white hover:drop-shadow-md hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f] hover:shadow-sky-600 transition-all ease-in-out duration-500 cursor-pointer" data-twe-ripple-centered="true"  onClick={() => getFormat()}>
+          <p className="bg-transparent text-sky-500 font-bold select-none ease-in-out duration-150 group-hover:text-white">{formatState ? "MP3" : "MP4"}</p>
+        </div>
         <input className=" border-b-2 w-[400px] border-white outline-none focus:border-b-red-600 duration-300 focus:ease-out  " onChange={(e) => setInput(e.currentTarget.value)} placeholder="Video URL"/>
         <button className=" font-bold border-2 border-red-600 w-28 h-12 mx-5 rounded-xl text-red-500 hover:bg-red-600 hover:text-white hover:drop-shadow-md hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f] hover:shadow-red-600 ease-in-out duration-500" type="submit">Download</button>
       </form>
@@ -54,3 +63,11 @@ function App() {
 }
 
 export default App;
+
+
+
+<button
+  type="button"
+  class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
+  Button
+</button>

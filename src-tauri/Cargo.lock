@@ -3,6 +3,19 @@
 version = 3
 
 [[package]]
+name = "YVDownloader"
+version = "0.1.0"
+dependencies = [
+ "directories",
+ "rusty_ytdl",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tokio",
+]
+
+[[package]]
 name = "addr2line"
 version = "0.21.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4009,19 +4022,6 @@ checksum = "5993dc129e544393574288923d1ec447c857f3f644187f4fbf7d9a875fbfc4fb"
 dependencies = [
  "embed-resource",
  "toml 0.7.8",
-]
-
-[[package]]
-name = "tauritesteo"
-version = "0.0.0"
-dependencies = [
- "directories",
- "rusty_ytdl",
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tokio",
 ]
 
 [[package]]

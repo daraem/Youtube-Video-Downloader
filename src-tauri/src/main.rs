@@ -7,12 +7,20 @@ use std::fs;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
-async fn download(url: String) {
-  let video_options = VideoOptions {
-    quality: VideoQuality::Highest,
-    filter: VideoSearchOptions::VideoAudio,
+async fn download(url: String, formatState: bool) {
+  let mut video_options = VideoOptions {
+    quality: VideoQuality::HighestVideo,
+    filter: VideoSearchOptions::VideoAudio ,
     ..Default::default()
   };
+
+  let mut formatString = ".mp4";
+
+  if formatState {
+    video_options.filter = VideoSearchOptions::Audio;
+    formatString = ".mp3";
+  }
+
 
   let video = Video::new_with_options(url, video_options).unwrap();
 
@@ -20,7 +28,7 @@ async fn download(url: String) {
 
   let video_folder = "videos/";
   let videostr = (video_info.video_details.title).to_string();
-  let video_title = format!("{}{}{}", &video_folder, &videostr, &".mp4");
+  let video_title = format!("{}{}{}", &video_folder, &videostr, &formatString);
   let _ = fs::create_dir_all("videos");
   let path = std::path::Path::new(&video_title);
   video.download(path).await.unwrap();
