@@ -9,7 +9,7 @@ use std::fs;
 #[tauri::command]
 async fn download(url: String, formatState: bool) {
   let mut video_options = VideoOptions {
-    quality: VideoQuality::HighestVideo,
+    quality: VideoQuality::Highest,
     filter: VideoSearchOptions::VideoAudio ,
     ..Default::default()
   };
