@@ -9,4 +9,4 @@ You can find the installation file in the [releases tab](https://github.com/dara
 ## How To Use
 Simply put the video URL where it is requested as shown in the image below. Videos are stored in the installation folder.
 
- <img src="https://github.com/daraem/Youtube-Video-Downloader/blob/main/DemoYVD.png">
+ <img src="https://github.com/daraem/Youtube-Video-Downloader/blob/main/yvddemo.png">
