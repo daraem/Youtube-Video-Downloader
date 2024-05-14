@@ -4,8 +4,8 @@
 use rusty_ytdl::{Video, VideoSearchOptions, VideoQuality, VideoOptions};
 use std::env;
 use std::fs;
-use std::path;
 use opener;
+use rand::Rng;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
@@ -25,14 +25,19 @@ async fn download(url: String, format_state: bool) {
 
   let video = Video::new_with_options(url, video_options).unwrap();
 
-  let video_info = video.get_info().await.unwrap();
+  // let video_info = video.get_info().await.unwrap();
+
+  let num = rand::thread_rng().gen_range(0..999);
 
   let video_folder = "videos/";
-  let videostr = (video_info.video_details.title).to_string();
-  let video_title = format!("{}{}{}", &video_folder, &videostr, &format_string);
+  // let videostr = (video_info.video_details.title).to_string();
+  let video_title = format!("{}{}{}{}", &video_folder, "video",num, &format_string);
   let _ = fs::create_dir_all("videos");
   let path = std::path::Path::new(&video_title);
+
+
   video.download(path).await.unwrap();
+
 }
 
 #[tauri::command]
